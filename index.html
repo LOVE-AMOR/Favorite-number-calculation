@@ -3,12 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Guess My Favorite Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
 </head>
-<body align = "center">
-    <button onClick = "Favoritenumbercalculation()">Click Me</button>
+<body>
 
-    <script src = "Favoritenumbercalculation.js"></script>
-    
+    <h1>Guess My Favorite Number!</h1>
+    <p>Can you guess my favorite number between 1 and 10?</p>
+
+    <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="10">
+    <button onclick="checkGuess()">Submit Guess</button>
+
+    <div id="feedback"></div>
+    <div id="result" style="font-weight: bold; margin-top: 20px;"></div>
+
+    <script>
+        const favNumber = 7;
+        let attempts = 0;
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guessInput').value);
+            const feedbackDiv = document.getElementById('feedback');
+            const resultDiv = document.getElementById('result');
+
+            attempts++;
+            if (guess < favNumber) {
+                feedbackDiv.innerText = "Too low! Try again.";
+                resultDiv.innerText = "";
+            } else if (guess > favNumber) {
+                feedbackDiv.innerText = "Too high! Try again.";
+                resultDiv.innerText = "";
+            } else {
+                feedbackDiv.innerText = "";
+                resultDiv.innerText = "You guessed it! My favorite number is " + favNumber + ". It took you " + attempts + " attempts.";
+            }
+        }
+    </script>
+
 </body>
 </html>
